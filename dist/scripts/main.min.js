@@ -1,3 +1,21 @@
+var data = {
+ "name": "flare",
+ "children": [
+  {
+   "name": "analytics",
+   "children": [
+      {
+       "name": "cluster",
+       "children": [
+        {"name": "AgglomerativeCluster", "size": 3938},
+        {"name": "CommunityStructure", "size": 3812},
+        {"name": "HierarchicalCluster", "size": 6714},
+        {"name": "MergeEdge", "size": 743}
+       ]
+      },
+    ]
+  }]
+}
 var IssueDetail = (function(){
 
   var leafSelected = function(d) {
@@ -52,8 +70,9 @@ var svg = d3.select("#issue-graph").append("svg")
   .append("g")
     .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
-d3.json("flare.json", function(error, root) {
-  if (error) throw error;
+//d3.json("flare.json", function(error, root) {
+//  if (error) throw error;
+  var root = data;
 
   var focus = root,
       nodes = pack.nodes(root),
@@ -121,6 +140,6 @@ d3.json("flare.json", function(error, root) {
     node.attr("transform", function(d) { return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"; });
     circle.attr("r", function(d) { return d.r * k; });
   }
-});
+//});
 
 d3.select(self.frameElement).style("height", diameter + "px");
